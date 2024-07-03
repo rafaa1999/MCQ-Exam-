@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
   }
 
   getStudents(){
-    this.service.getUsers().subscribe((data:any) => {
+    this.service.getUsers("students").subscribe((data:any) => {
       this.students = data
       console.log(this.students)
     },err => {
