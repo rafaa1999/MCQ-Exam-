@@ -1,8 +1,11 @@
 {
-    "users":[
+    "students":[
         {
-            "id": 1,
-            "name": "John"
         }
-    ]
+    ],
+    "doctor":[
+        {
+        }
+    ],
+    "login":[]
 }
