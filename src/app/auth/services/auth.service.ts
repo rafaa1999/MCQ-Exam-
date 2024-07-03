@@ -13,5 +13,9 @@ export class AuthService {
     console.log(model)
     return this.http.post(environment.baseApi + "students",model)
   }
+
+  getUsers(){
+    return this.http.get(environment.baseApi + "students")
+  }
 }
 

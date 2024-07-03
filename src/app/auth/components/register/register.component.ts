@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -11,14 +12,17 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   userForm!:FormGroup
+  students:any[] = []
 
   constructor(private fb:FormBuilder,
     private service:AuthService,
-    private router:Router
+    private router:Router,
+    private toster:ToastrService
   ) { }
 
   ngOnInit(): void {
     this.createForm();
+    this.getStudents();
   }
 
   createForm(){
@@ -30,20 +34,47 @@ export class RegisterComponent implements OnInit {
     })
   }
 
+  getStudents(){
+    this.service.getUsers().subscribe((data:any) => {
+      this.students = data
+      console.log(this.students)
+    },err => {
+      console.log(err);
+    })
+  }
+
   submit(){
     const model = {
       username: this.userForm.value.username,
       email: this.userForm.value.email,
       password: this.userForm.value.password
     }
-    console.log(model)
 
-    this.service.createUser(model).subscribe((res:any) => {
-      alert("Success")
-      this.router.navigate(['/subjects'])
-    },err => {
-      console.log(err)
-    })
+    let index = this.students.findIndex(item => item.email == this.userForm.value.email)
+
+    if(index !== -1){
+      this.toster.error("Email already exists","", {
+        disableTimeOut: false,
+        titleClass: "toastr_title",
+        messageClass: "toastr_message",
+        timeOut:5000,
+        closeButton:true
+      })
+    }else{
+      this.service.createUser(model).subscribe((res:any) => {
+        this.toster.success("Student account is added successfully","", {
+          disableTimeOut: false,
+          titleClass: "toastr_title",
+          messageClass: "toastr_message",
+          timeOut:5000,
+          closeButton:true
+        })
+        this.router.navigate(['/subjects'])
+      },err => {
+        console.log(err)
+      })
+    }
+
   }
 
 }
