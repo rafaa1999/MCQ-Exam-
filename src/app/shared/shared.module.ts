@@ -5,6 +5,7 @@ import { MatrialModule } from './matrial.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -15,12 +16,14 @@ import { RouterModule } from '@angular/router';
   imports: [
     MatrialModule,
     CommonModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
     BrowserModule
   ],
   exports:[
     HttpClientModule,
+    ReactiveFormsModule,
     BrowserModule,
     RouterModule,
     MatrialModule,

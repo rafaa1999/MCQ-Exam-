@@ -1,11 +1,12 @@
 {
-    "students":[
-        {
-        }
-    ],
-    "doctor":[
-        {
-        }
-    ],
-    "login":[]
+  "students": [
+    {
+      "username": "doi",
+      "email": "doi@gmail.com",
+      "password": "doojidf",
+      "id": 1
+    }
+  ],
+  "doctor": [],
+  "login": []
 }
