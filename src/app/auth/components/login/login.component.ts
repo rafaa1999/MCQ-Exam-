@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
         role: this.type
       }
       this.service.login(model).subscribe((res:any) => {
+        this.service.user.next(res)
         this.toster.success("Login is successfully done","", {
           disableTimeOut: false,
           titleClass: "toastr_title",
@@ -81,6 +82,5 @@ export class LoginComponent implements OnInit {
     }
 
   }
-
 
 }

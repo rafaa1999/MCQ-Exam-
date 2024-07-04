@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit {
   }
 
   submit(){
+    
     const model = {
       username: this.userForm.value.username,
       email: this.userForm.value.email,
