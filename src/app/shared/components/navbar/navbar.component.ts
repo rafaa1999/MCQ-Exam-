@@ -14,8 +14,18 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.user.subscribe((res:any) => {
-      this.user = res
+      if(res.role){
+        this.user = res
+      }
       console.log(this.user)
+    })
+  }
+
+  logout(){
+    const model = {}
+    this.service.login(model).subscribe((res:any) => {
+      this.user = null
+      this.service.user.next(res)
     })
   }
 
