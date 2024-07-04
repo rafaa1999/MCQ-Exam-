@@ -21,8 +21,11 @@
       "id": 1
     }
   ],
+  "subjects": [],
   "login": [
     {
+      "username": "admin",
+      "role": "doctor",
       "id": 1
     }
   ]
